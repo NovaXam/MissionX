@@ -31,6 +31,7 @@ class App extends Component {
       signInPass: '',
       token: '',
       userId: '',
+      key: '',
     };
 
     this.countDown = this.countDown.bind(this);
@@ -78,11 +79,23 @@ class App extends Component {
 
   handleCurListener() {
     console.log('im inside of the Cur');
-    axios('https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&page=25&api_key=hgpgtQUc1hFEuBIpqealWdbzZibr6r3iIIbv6rfM')
+    axios({
+      method: 'GET',
+      url: 'http://localhost:3001',
+    })
       .then((res) => {
+        console.log(res.data.data.key);
         this.setState({
-          pictures: res.data.photos,
+          key: res.data.data.key,
         });
+        axios('https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&page=25&api_key=hgpgtQUc1hFEuBIpqealWdbzZibr6r3iIIbv6rfM')
+          .then((response) => {
+            this.setState({
+              pictures: response.data.photos,
+            });
+          }).catch((err) => {
+            console.log(err);
+          });
       }).catch((err) => {
         console.log(err);
       });
@@ -92,13 +105,25 @@ class App extends Component {
     console.log('im inside of the Spi');
     axios({
       method: 'GET',
-      url: 'https://api.nasa.gov/mars-photos/api/v1/rovers/spirit/photos?sol=1000&api_key=hgpgtQUc1hFEuBIpqealWdbzZibr6r3iIIbv6rfM',
+      url: 'http://localhost:3001',
     })
       .then((res) => {
-        console.log(res);
+        console.log(res.data.data.key);
         this.setState({
-          pictures: res.data.photos,
+          key: res.data.data.key,
         });
+        axios({
+          method: 'GET',
+          url: `https://api.nasa.gov/mars-photos/api/v1/rovers/spirit/photos?sol=1000&api_key=${this.state.key}`,
+        })
+          .then((response) => {
+            console.log(res);
+            this.setState({
+              pictures: response.data.photos,
+            });
+          }).catch((err) => {
+            console.log(err);
+          });
       }).catch((err) => {
         console.log(err);
       });
@@ -106,15 +131,28 @@ class App extends Component {
 
   handleOppListener() {
     console.log('im inside of the Opp');
+
     axios({
       method: 'GET',
-      url: 'https://api.nasa.gov/mars-photos/api/v1/rovers/opportunity/photos?sol=1000&api_key=hgpgtQUc1hFEuBIpqealWdbzZibr6r3iIIbv6rfM',
+      url: 'http://localhost:3001',
     })
       .then((res) => {
-        console.log(res);
+        console.log(res.data.data.key);
         this.setState({
-          pictures: res.data.photos,
+          key: res.data.data.key,
         });
+        axios({
+          method: 'GET',
+          url: `https://api.nasa.gov/mars-photos/api/v1/rovers/opportunity/photos?sol=1000&api_key=${this.state.key}`,
+        })
+          .then((response) => {
+            console.log(response);
+            this.setState({
+              pictures: response.data.photos,
+            });
+          }).catch((err) => {
+            console.log(err);
+          });
       }).catch((err) => {
         console.log(err);
       });

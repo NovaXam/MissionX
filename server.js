@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken');
 const pgp = require('pg-promise');
 const path = require('path');
 const cors = require('cors');
+require('dotenv').config();
 
 /*instance of express framework*/
 const app = express();
@@ -18,6 +19,16 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static('public'));
+
+app.use((req, res) => {
+  res.json({
+    message: 'got a key',
+    data: {
+      key: process.env.api_key,
+      secret: process.env.SECRET,
+    }
+  })
+});
 
 /*exprees middleware to check a valide token*/
 app.use((req, res, next) => {
