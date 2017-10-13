@@ -4,15 +4,14 @@ const userController = require('../controllers/userControllers');
 
 const missionRoute = express.Router();
 
-missionRoute.route('/user/:id/storage')
-            .get(missionController.indexAll)
+missionRoute.route('/storage')
+            .post(missionController.index)
             .delete(missionController.destroy);
 
-missionRoute.get('user/:id/storage/:id', missionController.indexOne);
-missionRoute.post('/user/:id/rovers/:id', missionController.create);
+missionRoute.post('/rovers', missionController.create);
 
 
-missionRoute.post('/auth/registration', userController.reg);
-missionRoute.get('/auth/signIn', userController.signIn);
+missionRoute.post('/registration', userController.reg);
+missionRoute.post('/sign_in', userController.sign_in);
 
 module.exports = missionRoute;

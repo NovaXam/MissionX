@@ -2,7 +2,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
-const jwt = require('jsonwebpackage');
+const jwt = require('jsonwebtoken');
 const pgp = require('pg-promise');
 const path = require('path');
 const cors = require('cors');
@@ -19,14 +19,16 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static('public'));
 
-/*exprees middleware for user*/
+/*exprees middleware to check a valide token*/
 app.use((req, res, next) => {
   if(req.headers && req.headers.authorization && req.headers.authorization.split(' ')[0] === 'JWT') {
     jwt.verify(req.headers.authorization.split(' ')[1], 'darkWaider', (err, decode) => {
       if(err) {
         req.user = undefined;
+        return res.json({message: 'Please login'});
       }
       req.user = decode;
+      console.log('go to next level');
       next();
     })
   } else {
@@ -36,7 +38,7 @@ app.use((req, res, next) => {
 });
 
 /*create port*/
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 /*start listening port*/
 app.listen(PORT, () => {
@@ -45,9 +47,9 @@ app.listen(PORT, () => {
 
 /*due to the following path redirect to routes*/
 const missionRoutes = require('./routes/missionRoutes');
-app.get('/api', missionRoutes);
+app.use('/api', missionRoutes);
 
 
 app.get('*', (req, res) => {
-  res.status(404).send('Oupps, something broken');
+  res.status(404).send('Ooops!');
 });

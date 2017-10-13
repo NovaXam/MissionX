@@ -1,0 +1,29 @@
+.Nav a {
+  color: white;
+  text-decoration: none;
+  font-family: 'Smallville';
+  font-size: 35px;
+  letter-spacing: 4px;
+  background: transparent;
+}
+
+.Nav a:hover {
+  font-size: 37px;
+  text-shadow: 0 0 0.2em #F87, 0 0 0.2em #F87;
+}
+
+.Nav a:active {
+  font-size: 37px;
+  text-shadow: 0 0 0.2em #F87, 0 0 0.2em #F87;
+  text-decoration: underline;
+}
+
+.Nav ul {
+  list-style: none;
+}
+
+.Nav ul li {
+  margin: 0px 15px;
+  float: left;
+  color: white;
+}

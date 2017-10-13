@@ -1,0 +1,99 @@
+.albume {
+  position: relative;
+  top: 65px;
+}
+
+.StoragePic img {
+  position: relative;
+  height: 400px;
+  width: auto;
+  margin: 0 auto;
+  margin-top: 40px;
+}
+
+.StoragePic input {
+  display: inline-block;
+  position: relative;
+  width: 50px;
+  height: 50px;
+  border-radius: 90px;
+  font-size: 30px;
+  color:#840000;
+  top: -60px;
+  left: 695px;
+  text-align: center;
+  background-color: transparent;
+  box-shadow: 0px 0px 10px 1px white;
+}
+
+.albume .slick-prev  {
+    left: 105px;
+    z-index: 1;
+  }
+
+.albume .slick-next  {
+    left: 1260px;
+  }
+
+.albume .slick-next:before, .slick-prev:before {
+    position: relative;
+    font-size: 75px;
+    line-height: 1;
+    opacity: .75;
+    color: #fff;
+    top:-25px;
+}
+
+.albume .slick-dots {
+
+  margin-left: 75px;
+  width: 90%;
+  bottom: 0px;
+  line-height: 30px;
+}
+
+.albume .slick-dots li.slick-active button:before {
+  font-size: 10px;
+  color: #840000;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  padding-bottom: -2px;
+}
+
+.albume .slick-dots li button::before {
+  font-size: 12px;
+  color: white;
+  border-radius: 90px;
+  width: 15px;
+  height: 15px;
+  box-shadow: 0px 0px 10px 1px white;
+  margin-bottom: -3px;
+}
+
+.infoBlock {
+  visibility: hidden;
+  display: inline-block;
+  position: absolute;
+  height: 75px;
+  width: 450px;
+  background-color: rgba(255,255,255,0.7);
+  z-index: 1;
+  text-align: justify;
+  top: 40px;
+  margin-left: 495px;
+  line-height: 20px;
+}
+
+.infoBlock ul {
+  list-style: none;
+}
+
+.infoBlock:hover {
+  visibility: visible;
+}
+
+
+
+
+

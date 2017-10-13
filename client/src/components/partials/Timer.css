@@ -1,0 +1,9 @@
+.timer {
+  height: 75px;
+  width: 400px;
+  margin: 0px auto 0px;
+  color: rgb(255,50,10);
+  font-size: 35px;
+  text-align: center;
+  font-family: 'Orbitron';
+}
