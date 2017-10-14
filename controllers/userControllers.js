@@ -31,7 +31,7 @@ userController.sign_in = (req, res) => {
           }
           else {
             res.json({
-              token: jwt.sign({ username: UserIn.name, id: UserIn.id }, 'darkWaider', { expiresIn: 60000 }),
+              token: jwt.sign({ username: UserIn.name, id: UserIn.id }, process.env.SECRET, { expiresIn: 60000 }),
               id: UserIn.id,
             });
           }

@@ -81,7 +81,7 @@ class App extends Component {
     console.log('im inside of the Cur');
     axios({
       method: 'GET',
-      url: 'http://localhost:3001',
+      url: 'http://localhost:3001/api/info',
     })
       .then((res) => {
         console.log(res.data.data.key);
@@ -105,7 +105,7 @@ class App extends Component {
     console.log('im inside of the Spi');
     axios({
       method: 'GET',
-      url: 'http://localhost:3001',
+      url: 'http://localhost:3001/api/info',
     })
       .then((res) => {
         console.log(res.data.data.key);
@@ -134,7 +134,7 @@ class App extends Component {
 
     axios({
       method: 'GET',
-      url: 'http://localhost:3001',
+      url: 'http://localhost:3001/api/info',
     })
       .then((res) => {
         console.log(res.data.data.key);
@@ -256,11 +256,11 @@ class App extends Component {
       data: { user_id: id },
     })
       .then((res) => {
-        if (res.data === 'empty') {
-          console.log(res);
+        if (res.data === 'empty' || res.data.message === 'Please login') {
           this.setState({
             albume: [],
           });
+          alert(res.data.message);
         } else {
           console.log(res);
           this.setState({

@@ -20,20 +20,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static('public'));
 
-app.use((req, res) => {
-  res.json({
-    message: 'got a key',
-    data: {
-      key: process.env.api_key,
-      secret: process.env.SECRET,
-    }
-  })
-});
-
 /*exprees middleware to check a valide token*/
 app.use((req, res, next) => {
+  console.log('next step');
   if(req.headers && req.headers.authorization && req.headers.authorization.split(' ')[0] === 'JWT') {
-    jwt.verify(req.headers.authorization.split(' ')[1], 'darkWaider', (err, decode) => {
+    jwt.verify(req.headers.authorization.split(' ')[1], process.env.SECRET, (err, decode) => {
       if(err) {
         req.user = undefined;
         return res.json({message: 'Please login'});

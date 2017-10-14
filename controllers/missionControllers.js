@@ -36,12 +36,14 @@ missionController.destroy = (req, res) => {
   })
 }
 
+missionController.getApi = (req, res) => {
+  res.json({
+    message: 'got a key',
+    data: {
+      key: process.env.api_key,
+      secret: process.env.SECRET,
+    }
+  });
+}
+
 module.exports = missionController;
-
-
-
-
-
-
-
-

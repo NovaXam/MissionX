@@ -9,7 +9,7 @@ missionRoute.route('/storage')
             .delete(missionController.destroy);
 
 missionRoute.post('/rovers', missionController.create);
-
+missionRoute.get('/info', missionController.getApi);
 
 missionRoute.post('/registration', userController.reg);
 missionRoute.post('/sign_in', userController.sign_in);
