@@ -27,8 +27,8 @@ const Storage = (props) => {
               <form className="StoragePic" photo_id={elem.photo_id} user_id={elem.user_id} onSubmit={props.handleDeleteListener}>
                 <div className="infoBlock">
                   <ul>
-                    <li>date of picture: {elem.earth_date}  landing date: {elem.landing_date}</li>
-                    <li>rover name: {elem.rover_name} status: {elem.status}</li>
+                    <li>Date of picture:     {elem.earth_data}<span> Landing date:     {elem.landing_date}</span></li>
+                    <li>Rover name:<b>     {elem.rover_name}  </b>Mission status:     {elem.status}</li>
                   </ul>
                 </div>
                 <img src={elem.url} key={elem.id} alt="roverpicture" />

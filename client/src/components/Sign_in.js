@@ -28,12 +28,13 @@ const SignIn = (props) => {
             onChange={props.handleSignInPassListen}
           />
           <br />
-         <input id="signButton" style={{ display: 'inline-block', width: '150px', height: '50px' }} type="submit" value="Submit" />
+          <input id="signButton" style={{ display: 'inline-block', width: '150px', height: '50px' }} type="submit" value="Submit" />
+          <br />
+          <p className="RegLink">For registration use <Link to="/login">REGISTRATION</Link></p>
         </fieldset>
       </form>
     </div>
-
-    );
+  );
 };
 
 export default SignIn;

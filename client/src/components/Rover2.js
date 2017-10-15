@@ -1,8 +1,9 @@
 import React from 'react';
 import Slider from 'react-slick';
 import { Link } from 'react-router-dom';
+import Calendar from 'react-calendar';
 import './Rover2.css';
-import rover2 from '../assets/rover2.jpg';
+import rover2 from '../assets/rover2.png';
 import rover1 from '../assets/rover1.png';
 import rover3 from '../assets/rover3.jpg';
 
@@ -23,30 +24,23 @@ const Rover2 = (props) => {
     },
   };
   return (
-    <div className="mainRoverCuriosity">
-      <div className="nestedRover">
-        <div className="spirit">
-          <div className="headerStripe"><h3>SPIRIT</h3></div>
-          <img src={rover1} alt="roverpicture" />
-          <ul>
-            <li>Length: 12 feet </li>
-            <li>Width: 7 feet </li>
-            <li>Height: 8 feet </li>
-            <li>Mass: 1,796 lb </li>
-          </ul>
-          <p><b>MISSION:</b> was targeted to a site that appears to
-              have been affected by liquid water in the past, the
-              crater Gusev, a possible former lake in a giant.
-          </p>
+    <div className="mainRoverSpirit">
+      <div className="CalenAndIcon">
+        <div className="cal">
+          <Calendar onChange={props.handleSpiDateListen}/>
         </div>
-        <Link to="/rovers/curiosity" onClick={props.handleCurListen}><img id="rov" src={rover2} alt="roverpicture" /></Link>
-        <Link to="/rovers/opportunity" onClick={props.handleOppListen}><img id="rov" src={rover3} alt="roverpicture" /></Link>
+        <div className="nestedRover">
+          <Link to="/rovers/curiosity" onClick={props.handleCurListen}><img id="rov" src={rover2} alt="roverpicture" /></Link>
+          <Link to="/rovers/spirit" onClick={props.handleSpiListen}><img id="rov" src={rover1} alt="roverpicture" /></Link>
+          <Link to="/rovers/opportunity" onClick={props.handleOppListen}><img id="rov" src={rover3} alt="roverpicture" /></Link>
+        </div>
       </div>
       <div className="gallaryAPI">
         <Slider {...settings}>
           {props.pictures.map((elem) => {
             return (
               <form className="bodyCurPic" photo_id={elem.id} onSubmit={props.handleSaveListener}>
+                <div>{elem.earth_date}</div>
                 <img src={elem.img_src} key={elem.id} alt="roverpicture" />
                 <input type="submit" value="&#8711;" />
               </form>

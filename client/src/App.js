@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
+import Loading from './components/partials/Loading';
 import Footer from './components/partials/Footer';
 import Header from './components/partials/Header';
 import Rovers from './components/Rovers';
@@ -32,6 +33,7 @@ class App extends Component {
       token: '',
       userId: '',
       key: '',
+      date: new Date(),
     };
 
     this.countDown = this.countDown.bind(this);
@@ -49,6 +51,9 @@ class App extends Component {
     this.handleSignInNameListener = this.handleSignInNameListener.bind(this);
     this.handleSignInPassListener = this.handleSignInPassListener.bind(this);
     this.handleSignInListener = this.handleSignInListener.bind(this);
+    this.handleCurDateListener = this.handleCurDateListener.bind(this);
+    this.handleSpiDateListener = this.handleSpiDateListener.bind(this);
+    this.handleOppDateListener = this.handleOppDateListener.bind(this);
   }
 
   componentWillMount() {
@@ -61,6 +66,8 @@ class App extends Component {
     setInterval(this.countDown, 1000);
   }
 
+  // countdown clock at the bottom of the screen with
+  // representation by day, hours, minuts and second
   countDown() {
     const destinationTime = new Date('Sept 17, 2024 00:00:00').getTime();
     const current = new Date().getTime();
@@ -77,14 +84,15 @@ class App extends Component {
     });
   }
 
+  // listener for bacis api request when you get into the page
+  // of curiosity rover. Method makes prior request to local server
+  // for api key
   handleCurListener() {
-    console.log('im inside of the Cur');
     axios({
       method: 'GET',
       url: 'http://localhost:3001/api/info',
     })
       .then((res) => {
-        console.log(res.data.data.key);
         this.setState({
           key: res.data.data.key,
         });
@@ -101,14 +109,15 @@ class App extends Component {
       });
   }
 
+  // listener for bacis api request when you get into the page
+  // of spirit rover. Method makes prior request to local server
+  // for api key
   handleSpiListener() {
-    console.log('im inside of the Spi');
     axios({
       method: 'GET',
       url: 'http://localhost:3001/api/info',
     })
       .then((res) => {
-        console.log(res.data.data.key);
         this.setState({
           key: res.data.data.key,
         });
@@ -117,7 +126,33 @@ class App extends Component {
           url: `https://api.nasa.gov/mars-photos/api/v1/rovers/spirit/photos?sol=1000&api_key=${this.state.key}`,
         })
           .then((response) => {
-            console.log(res);
+            this.setState({
+              pictures: response.data.photos,
+            });
+          }).catch((err) => {
+            console.log(err);
+          });
+      }).catch((err) => {
+        console.log(err);
+      });
+  }
+  // listener for bacis api request when you get into the page
+  // of opportunity rover. Method makes prior request to local server
+  // for api key
+  handleOppListener() {
+    axios({
+      method: 'GET',
+      url: 'http://localhost:3001/api/info',
+    })
+      .then((res) => {
+        this.setState({
+          key: res.data.data.key,
+        });
+        axios({
+          method: 'GET',
+          url: `https://api.nasa.gov/mars-photos/api/v1/rovers/opportunity/photos?sol=1000&api_key=${this.state.key}`,
+        })
+          .then((response) => {
             this.setState({
               pictures: response.data.photos,
             });
@@ -129,24 +164,86 @@ class App extends Component {
       });
   }
 
-  handleOppListener() {
-    console.log('im inside of the Opp');
-
-    axios({
+  handleCurDateListener(date) {
+    const transDate = date.toISOString().split('T')[0];
+    this.setState({
+      date: transDate,
+    });
+     axios({
       method: 'GET',
       url: 'http://localhost:3001/api/info',
     })
       .then((res) => {
-        console.log(res.data.data.key);
+        console.log(this.state.date);
         this.setState({
           key: res.data.data.key,
         });
-        axios({
-          method: 'GET',
-          url: `https://api.nasa.gov/mars-photos/api/v1/rovers/opportunity/photos?sol=1000&api_key=${this.state.key}`,
-        })
-          .then((response) => {
-            console.log(response);
+    axios({
+      method: 'GET',
+      url: `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=${this.state.date}&api_key=${this.state.key}`,
+  })
+    .then((response) => {
+            this.setState({
+              pictures: response.data.photos,
+            });
+          }).catch((err) => {
+            console.log(err);
+          });
+      }).catch((err) => {
+        console.log(err);
+      });
+  }
+
+  handleSpiDateListener(date) {
+    const transDate = date.toISOString().split('T')[0];
+    this.setState({
+      date: transDate,
+    });
+     axios({
+      method: 'GET',
+      url: 'http://localhost:3001/api/info',
+    })
+      .then((res) => {
+        console.log(this.state.date);
+        this.setState({
+          key: res.data.data.key,
+        });
+    axios({
+      method: 'GET',
+      url: `https://api.nasa.gov/mars-photos/api/v1/rovers/spirit/photos?earth_date=${this.state.date}&api_key=${this.state.key}`,
+  })
+    .then((response) => {
+            this.setState({
+              pictures: response.data.photos,
+            });
+          }).catch((err) => {
+            console.log(err);
+          });
+      }).catch((err) => {
+        console.log(err);
+      });
+  }
+
+
+  handleOppDateListener(date) {
+    const transDate = date.toISOString().split('T')[0];
+    this.setState({
+      date: transDate,
+    });
+     axios({
+      method: 'GET',
+      url: 'http://localhost:3001/api/info',
+    })
+      .then((res) => {
+        console.log(this.state.date);
+        this.setState({
+          key: res.data.data.key,
+        });
+    axios({
+      method: 'GET',
+      url: `https://api.nasa.gov/mars-photos/api/v1/rovers/opportunity/photos?earth_date=${this.state.date}&api_key=${this.state.key}`,
+  })
+    .then((response) => {
             this.setState({
               pictures: response.data.photos,
             });
@@ -166,7 +263,6 @@ class App extends Component {
         return elem;
       }
     });
-    console.log(newElem);
     axios({
       method: 'POST',
       url: 'http://localhost:3001/api/rovers',
@@ -184,7 +280,6 @@ class App extends Component {
       },
     })
       .then((res) => {
-        console.log(res);
         if (res.data === "err") {
             alert('this item already exist');
         } else {
@@ -200,7 +295,6 @@ class App extends Component {
     this.setState({
       user_name: event.target.value,
     });
-    console.log(this.state.user_name);
   }
 
   handlePassListener(event) {
@@ -208,7 +302,6 @@ class App extends Component {
     this.setState({
       password: event.target.value,
     });
-    console.log(this.state.password);
   }
 
   handlEmailListener(event) {
@@ -216,12 +309,10 @@ class App extends Component {
     this.setState({
       email: event.target.value,
     });
-    console.log(this.state.email);
   }
 
   handleLoginListener(event) {
     event.preventDefault();
-    console.log(event.target);
     axios({
       method: 'POST',
       url: 'http://localhost:3001/api/registration',
@@ -232,7 +323,6 @@ class App extends Component {
       },
     })
       .then((res) => {
-        console.log(res);
         this.setState({
           user_name: '',
           password: '',
@@ -260,9 +350,7 @@ class App extends Component {
           this.setState({
             albume: [],
           });
-          alert(res.data.message);
         } else {
-          console.log(res);
           this.setState({
             albume: res.data,
           });
@@ -273,10 +361,8 @@ class App extends Component {
   }
 
   handleNavListener(event) {
-    console.log(event.target);
     const currentElem = event.target;
-
-    if(this.state.flag === 0) {
+    if (this.state.flag === 0) {
       currentElem.style.cssText = 'text-decoration : underline; font-size: 37px; text-shadow: 0 0 0.2em #F87, 0 0 0.2em #F87';
       this.setState((prevState) => {
         return {
@@ -293,16 +379,13 @@ class App extends Component {
           flag: prevState.flag + 1,
         };
       });
-    };
+    }
   }
 
   handleDeleteListener(event) {
     event.preventDefault();
-    console.log(event.target);
     const indexId = event.target.getAttribute('photo_id');
     const userId = event.target.getAttribute('user_id');
-    console.log(indexId);
-    console.log(userId);
     axios({
       method: 'DELETE',
       url: 'http://localhost:3001/api/storage',
@@ -324,7 +407,7 @@ class App extends Component {
           },
           data: { user_id: userId },
         })
-          .then(res => {
+          .then((res) => {
             this.setState({
               albume: res.data,
             });
@@ -339,14 +422,12 @@ class App extends Component {
   }
 
   handleSignInNameListener(event) {
-    console.log(event.target.value);
     this.setState({
       signInName: event.target.value,
     });
   }
 
   handleSignInPassListener(event) {
-    console.log(event.target.value);
     this.setState({
       signInPass: event.target.value,
     });
@@ -358,7 +439,6 @@ class App extends Component {
       name: this.state.signInName,
       password: this.state.signInPass,
     };
-    console.log(userIn);
     axios({
       method: 'POST',
       url: 'http://localhost:3001/api/sign_in',
@@ -375,8 +455,6 @@ class App extends Component {
             userId: res.data.id,
           });
         }
-        console.log(res.data.token);
-        console.log(this.state.userId);
         localStorage.setItem('token', this.state.token);
       })
       .catch((err) => {
@@ -401,6 +479,7 @@ class App extends Component {
             render={props => (
               <Rover1
                 pictures={this.state.pictures}
+                handleCurDateListen={this.handleCurDateListener}
                 handleSaveListener={this.handleSaveListener}
                 handleSpiListen={this.handleSpiListener}
                 handleOppListen={this.handleOppListener}
@@ -414,6 +493,7 @@ class App extends Component {
             render={props => (
               <Rover2
                 pictures={this.state.pictures}
+                handleSpiDateListen={this.handleSpiDateListener}
                 handleSaveListener={this.handleSaveListener}
                 handleCurListen={this.handleCurListener}
                 handleOppListen={this.handleOppListener}
@@ -426,6 +506,7 @@ class App extends Component {
             render={props => (
               <Rover3
                 pictures={this.state.pictures}
+                handleOppDateListen={this.handleOppDateListener}
                 handleSaveListener={this.handleSaveListener}
                 handleCurListen={this.handleCurListener}
                 handleSpiListen={this.handleSpiListener}

@@ -17,6 +17,13 @@ fieldset {
   text-align: center;
 }
 
+#signButton {
+  display: inline-block;
+  margin: 115px auto 45px;
+  height: 40px;
+  width: 100px;
+}
+
 fieldset input {
   display: inline-block;
   height: 30px;
@@ -27,8 +34,9 @@ fieldset input {
   font-size: 20px;
 }
 
-.form #button {
-  margin: 40px auto;
+
+.RegLink {
+  margin-top: 10px;
 }
 
 fieldset {

@@ -1,13 +1,13 @@
 import React from 'react';
-import './Login_form.css';
 import { Link } from 'react-router-dom';
+import './Login_form.css';
 
 const Login = (props) => {
   return (
     <div className="formBlock">
       <form className="form" onSubmit={props.handleLoginListen}>
         <fieldset>
-          <legend> LOGIN FORM </legend>
+          <legend> REGISTRATION FORM </legend>
           <lable>Name: </lable>
           <input
             style={{ borderRadius: '5px' }}
@@ -40,7 +40,7 @@ const Login = (props) => {
           <br />
           <input id="button" style={{ display: 'inline-block', width: '150px', height: '150%' }} type="submit" value="Submit" />
           <br />
-          <p className="LoginLink">If you already registered use <Link to="/sign_in">LOGIN</Link></p>
+          <p className="LoginLink">Already registered, use <Link to="/sign_in">LOGIN</Link></p>
         </fieldset>
       </form>
     </div>

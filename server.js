@@ -22,7 +22,6 @@ app.use(express.static('public'));
 
 /*exprees middleware to check a valide token*/
 app.use((req, res, next) => {
-  console.log('next step');
   if(req.headers && req.headers.authorization && req.headers.authorization.split(' ')[0] === 'JWT') {
     jwt.verify(req.headers.authorization.split(' ')[1], process.env.SECRET, (err, decode) => {
       if(err) {

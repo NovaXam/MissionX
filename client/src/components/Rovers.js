@@ -2,8 +2,8 @@ import React from 'react';
 import './Rovers.css';
 import { Link } from 'react-router-dom';
 import rover2 from '../assets/rover1.png';
-import rover1 from '../assets/rover2.jpg';
-import rover3 from '../assets/rover3.jpg';
+import rover1 from '../assets/rover2.png';
+import rover3 from '../assets/rover3.png';
 
 const Rovers = (props) => {
   return (

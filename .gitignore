@@ -42,9 +42,6 @@ typings/
 # Optional npm cache directory
 .npm
 
-#api
-.config.env
-
 # Optional eslint cache
 .eslintcache
 
