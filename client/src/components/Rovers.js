@@ -8,7 +8,7 @@ import rover3 from '../assets/rover3.png';
 const Rovers = (props) => {
   return (
     <div className="mainRover">
-      <Link to="/rovers/curiosity" onClick={props.handleCurListen}>
+      <Link to="/rovers/curiosity" onClick={props.handleRoverListener}>
         <div className="rover">
           <div className="headerStripe"><h3>CURIOSITY</h3></div>
           <img src={rover1} alt="roverpicture" />
@@ -24,7 +24,7 @@ const Rovers = (props) => {
           </p>
         </div>
       </Link>
-      <Link to="/rovers/spirit" onClick={props.handleSpiListen}>
+      <Link to="/rovers/spirit" onClick={props.handleRoverListener}>
         <div className="rover">
           <div className="headerStripe"><h3>SPIRIT</h3></div>
           <img src={rover2} alt="roverpicture" />
@@ -40,7 +40,7 @@ const Rovers = (props) => {
           </p>
         </div>
       </Link>
-      <Link to="/rovers/opportunity" onClick={props.handleOppListen}>
+      <Link to="/rovers/opportunity" onClick={props.handleRoverListener}>
         <div className="rover">
           <div className="headerStripe"><h3>OPPORTUNITY</h3></div>
           <img src={rover3} alt="roverpicture" />

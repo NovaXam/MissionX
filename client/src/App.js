@@ -38,9 +38,7 @@ class App extends Component {
     };
 
     this.countDown = this.countDown.bind(this);
-    this.handleCurListener = this.handleCurListener.bind(this);
-    this.handleOppListener = this.handleOppListener.bind(this);
-    this.handleSpiListener = this.handleSpiListener.bind(this);
+    this.handleRoverListener = this.handleRoverListener.bind(this);
     this.handleSaveListener = this.handleSaveListener.bind(this);
     this.handleLoginListener = this.handleLoginListener.bind(this);
     this.handleNameListener = this.handleNameListener.bind(this);
@@ -88,84 +86,50 @@ class App extends Component {
     });
   }
 
-  // listener for bacis api request when you get into the page
-  // of curiosity rover. Method makes prior request to local server
-  // for api key
-  handleCurListener() {
-    axios({
-      method: 'GET',
-      url: 'http://localhost:3001/api/info',
-    })
-      .then((res) => {
-        this.setState({
-          key: res.data.data.key,
-        });
-        axios('https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&page=25&api_key=hgpgtQUc1hFEuBIpqealWdbzZibr6r3iIIbv6rfM')
-          .then((response) => {
-            this.setState({
-              pictures: response.data.photos,
-            });
-          }).catch((err) => {
-            console.log(err);
-          });
-      }).catch((err) => {
-        console.log(err);
-      });
+  changePicStat(prop, response) {
+    const keyObj = {};
+    keyObj[prop] = response;
+    this.setState(keyObj);
   }
 
-  // listener for bacis api request when you get into the page
-  // of spirit rover. Method makes prior request to local server
-  // for api key
-  handleSpiListener() {
-    axios({
-      method: 'GET',
-      url: 'http://localhost:3001/api/info',
-    })
-      .then((res) => {
-        this.setState({
-          key: res.data.data.key,
-        });
-        axios({
-          method: 'GET',
-          url: `https://api.nasa.gov/mars-photos/api/v1/rovers/spirit/photos?sol=1000&api_key=${this.state.key}`,
-        })
-          .then((response) => {
-            this.setState({
-              pictures: response.data.photos,
-            });
-          }).catch((err) => {
-            console.log(err);
-          });
-      }).catch((err) => {
+  async getKeys(elem) {
+    let keyApi;
+    let resultApi;
+    if (elem) {
+      console.log('key is here');
+    } else {
+      try {
+        keyApi = await axios('http://localhost:3001/api/info');
+      } catch (err) {
         console.log(err);
-      });
+      }
+      resultApi = await this.changePicStat('key', keyApi.data.data.key);
+    }
   }
-  // listener for bacis api request when you get into the page
-  // of opportunity rover. Method makes prior request to local server
-  // for api key
-  handleOppListener() {
-    axios({
-      method: 'GET',
-      url: 'http://localhost:3001/api/info',
-    })
-      .then((res) => {
-        this.setState({
-          key: res.data.data.key,
-        });
-        axios({
-          method: 'GET',
-          url: `https://api.nasa.gov/mars-photos/api/v1/rovers/opportunity/photos?sol=1000&api_key=${this.state.key}`,
-        })
-          .then((response) => {
-            this.setState({
-              pictures: response.data.photos,
-            });
-          }).catch((err) => {
-            console.log(err);
-          });
-      }).catch((err) => {
+
+  urlReturn() {
+    return window.location.pathname.split('/')[2];
+  }
+
+
+  // universal listener for bacis api request when you get into the pages
+  // of each rover. Method makes prior request to local server
+  // for api key in case if it wasn't priory instanciated.
+  async handleRoverListener(event) {
+    console.log(event.target);
+    let keys;
+    let roverName;
+    let dataApi;
+    try {
+      keys = await this.getKeys(this.state.key);
+      console.log(this.state.key);
+      roverName = await this.urlReturn();
+      console.log(roverName);
+      dataApi = await axios(`https://api.nasa.gov/mars-photos/api/v1/rovers/${roverName}/photos?sol=1000&api_key=${this.state.key}`);
+    } catch(err) {
         console.log(err);
-      });
+    }
+     this.changePicStat('pictures', dataApi.data.photos);
   }
 
   handleCurDateListener(date) {
@@ -486,9 +450,7 @@ class App extends Component {
                 pictures={this.state.pictures}
                 handleCurDateListen={this.handleCurDateListener}
                 handleSaveListener={this.handleSaveListener}
-                handleSpiListen={this.handleSpiListener}
-                handleOppListen={this.handleOppListener}
-
+                handleRoverListener={this.handleRoverListener}
               />
             )}
           />
@@ -501,8 +463,7 @@ class App extends Component {
                 pictures={this.state.pictures}
                 handleSpiDateListen={this.handleSpiDateListener}
                 handleSaveListener={this.handleSaveListener}
-                handleCurListen={this.handleCurListener}
-                handleOppListen={this.handleOppListener}
+                handleRoverListener={this.handleRoverListener}
               />
             )}
           />
@@ -515,8 +476,7 @@ class App extends Component {
                 pictures={this.state.pictures}
                 handleOppDateListen={this.handleOppDateListener}
                 handleSaveListener={this.handleSaveListener}
-                handleCurListen={this.handleCurListener}
-                handleSpiListen={this.handleSpiListener}
+                handleRoverListener={this.handleRoverListener}
               />
             )}
           />
@@ -525,9 +485,9 @@ class App extends Component {
             path="/rovers"
             render={props => (
               <Rovers
-                handleCurListen={this.handleCurListener}
-                handleSpiListen={this.handleSpiListener}
-                handleOppListen={this.handleOppListener}
+                handleRoverListener={this.handleRoverListener}
+                // handleSpiListen={this.handleSpiListener}
+                // handleOppListen={this.handleOppListener}
               />
             )}
           />
@@ -564,6 +524,7 @@ class App extends Component {
             path="/storage"
             render={props => (
               <Storage
+                bubbles={this.state.bubbles}
                 albume={this.state.albume}
                 handleDeleteListener={this.handleDeleteListener}
               />
