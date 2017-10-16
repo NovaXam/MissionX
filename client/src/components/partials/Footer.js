@@ -4,6 +4,7 @@ import './Footer.css';
 import Spacex_logo from '../../assets/Spacex_logo.png';
 import MarsPhoto from '../../assets/big_deal_mars.jpg';
 
+//compoment to show background image and countdown timer
 const Footer = (props) => {
   return (
     <div className="mainFooter">

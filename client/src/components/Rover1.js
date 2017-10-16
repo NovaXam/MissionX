@@ -26,6 +26,13 @@ const Rover1 = (props) => {
       console.log('after change', currentSlide);
     },
   };
+
+  const rovCurStyle = {
+    width: '115px',
+    height: '115px',
+    margin: '15px 5px -5px',
+  };
+
   return (
     <div className="mainRoverCuriosity">
       <div className="CalenAndIcon">
@@ -33,10 +40,13 @@ const Rover1 = (props) => {
           <Calendar onChange={props.handleCurDateListen} />
         </div>
         <div className="nestedRover">
-          <Link to="/rovers/curiosity" onClick={props.handleCurListen}><img id="rov" src={rover2} alt="roverpicture" /></Link>
-          <Link to="/rovers/spirit" onClick={props.handleSpiListen}><img id="rov" src={rover1} alt="roverpicture" /></Link>
-          <Link to="/rovers/opportunity" onClick={props.handleOppListen}><img id="rov" src={rover3} alt="roverpicture" /></Link>
+          <Link to="/rovers/curiosity" onClick={props.handleCurListen}><img id="rovCur" src={rover2} style={rovCurStyle} alt="roverpicture" /></Link>
+          <Link to="/rovers/spirit" onClick={props.handleSpiListen}><img id="rovSpi" src={rover1} alt="roverpicture" /></Link>
+          <Link to="/rovers/opportunity" onClick={props.handleOppListen}><img id="rovOpp" src={rover3} alt="roverpicture" /></Link>
         </div>
+      </div>
+      <div className="loading">
+        <Loading bubbles={props.bubbles} />
       </div>
       <div className="gallaryAPI">
         <Slider {...settings}>

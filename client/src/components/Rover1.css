@@ -35,7 +35,33 @@
   margin: 325px auto;
 }
 
-#rov {
+.loading {
+  position: relative;
+  display: inline-block;
+  left: 425px;
+  top: 175px;
+  z-index: 1;
+}
+
+#rovCur {
+  /*width: 100px;
+  height: 100px;
+  margin: 15px 15px 0px;*/
+  border-radius: 90px;
+  background-color: white;
+  box-shadow: 0px 0px 5px 3px rgb(169,64,13);
+}
+
+#rovSpi {
+  width: 100px;
+  height: 100px;
+  margin: 15px 15px 0px;
+  border-radius: 90px;
+  background-color: white;
+  box-shadow: 0px 0px 5px 3px rgb(169,64,13);
+}
+
+#rovOpp {
   width: 100px;
   height: 100px;
   margin: 15px 15px 0px;
@@ -106,6 +132,7 @@
   width: 90%;
   bottom: -65px;
   line-height: 30px;
+  overflow: auto;
 }
 
 .slick-dots li.slick-active button:before {

@@ -4,6 +4,9 @@ import {Link} from 'react-router-dom';
 import './Header.css';
 import Logo from '../../assets/total-recall.png';
 
+// component contains a navigation menu. Nested components have a props to control
+// a navigation emphasizing effects and AlbumeListener to show a user album if
+// user is logged in.
 const Header = (props) => {
   return (
     <div className="header">

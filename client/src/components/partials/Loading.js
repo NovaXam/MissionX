@@ -4,7 +4,7 @@ import ReactLoading from 'react-loading';
 const Loading = (props) => {
   return (
     <div>
-      <ReactLoading type="bubbles" color="#444" />
+      <ReactLoading type={props.bubbles} color="#444" />
     </div>
   );
 };

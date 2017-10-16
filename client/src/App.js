@@ -34,6 +34,7 @@ class App extends Component {
       userId: '',
       key: '',
       date: new Date(),
+      bubbles: 'bubbles',
     };
 
     this.countDown = this.countDown.bind(this);
@@ -64,6 +65,9 @@ class App extends Component {
 
   componentDidMount() {
     setInterval(this.countDown, 1000);
+    this.setState({
+      bubbles: '',
+    })
   }
 
   // countdown clock at the bottom of the screen with
@@ -478,6 +482,7 @@ class App extends Component {
             path="/rovers/curiosity"
             render={props => (
               <Rover1
+                bubbles={this.state.bubbles}
                 pictures={this.state.pictures}
                 handleCurDateListen={this.handleCurDateListener}
                 handleSaveListener={this.handleSaveListener}
@@ -492,6 +497,7 @@ class App extends Component {
             path="/rovers/spirit"
             render={props => (
               <Rover2
+                bubbles={this.state.bubbles}
                 pictures={this.state.pictures}
                 handleSpiDateListen={this.handleSpiDateListener}
                 handleSaveListener={this.handleSaveListener}
@@ -505,6 +511,7 @@ class App extends Component {
             path="/rovers/opportunity"
             render={props => (
               <Rover3
+                bubbles={this.state.bubbles}
                 pictures={this.state.pictures}
                 handleOppDateListen={this.handleOppDateListener}
                 handleSaveListener={this.handleSaveListener}
