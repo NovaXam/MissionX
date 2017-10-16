@@ -102,6 +102,7 @@
 
 .slick-dots {
   margin-left: 30px;
+  height: 65px;
   width: 90%;
   bottom: -65px;
   line-height: 30px;

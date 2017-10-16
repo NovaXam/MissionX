@@ -104,6 +104,7 @@
   width: 90%;
   bottom: -65px;
   line-height: 30px;
+  overflow: auto;
 }
 
 .slick-dots li.slick-active button:before {

@@ -102,10 +102,10 @@
 
 .slick-dots {
   margin-left: 30px;
-  width: 50%;
+  height: 65px;
+  width: 90%;
   bottom: -65px;
-  line-height: 20px;
-
+  line-height: 30px;
 }
 
 .slick-dots li.slick-active button:before {
