@@ -8,8 +8,6 @@ import rover2 from '../assets/rover2.png';
 import rover1 from '../assets/rover1.png';
 import rover3 from '../assets/rover3.png';
 
-
-
 const Rover1 = (props) => {
   const settings = {
     dots: true,
@@ -37,7 +35,7 @@ const Rover1 = (props) => {
     <div className="mainRoverCuriosity">
       <div className="CalenAndIcon">
         <div className="cal">
-          <Calendar onChange={props.handleCurDateListen} />
+          <Calendar onChange={props.handleRoverDateListener} />
         </div>
         <div className="nestedRover">
           <Link to="/rovers/curiosity" onClick={props.handleRoverListener}><img id="rovCur" src={rover2} style={rovCurStyle} alt="roverpicture" /></Link>

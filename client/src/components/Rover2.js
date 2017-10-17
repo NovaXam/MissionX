@@ -41,11 +41,11 @@ const Rover2 = (props) => {
     <div className="mainRoverSpirit">
       <div className="CalenAndIcon">
         <div className="cal">
-          <Calendar onChange={props.handleSpiDateListen}/>
+          <Calendar onChange={props.handleRoverDateListener}/>
         </div>
         <div className="nestedRover">
           <Link to="/rovers/curiosity" onClick={props.handleRoverListener}><img id="rovCur" src={rover2} style={rovCurStyle} alt="roverpicture" /></Link>
-          <Link to="/rovers/spirit" onClick={props.handleRoverListener}><img id="rovSpi" src={rover1} style={rovSpiStyle}rovSpiStylealt="roverpicture" /></Link>
+          <Link to="/rovers/spirit" onClick={props.handleRoverListener}><img id="rovSpi" src={rover1} style={rovSpiStyle} alt="roverpicture" /></Link>
           <Link to="/rovers/opportunity" onClick={props.handleRoverListener}><img id="rovOpp" src={rover3} alt="roverpicture" /></Link>
         </div>
       </div>

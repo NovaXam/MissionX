@@ -25,7 +25,6 @@ const Rover3 = (props) => {
     },
   };
 
-
   const rovOppStyle = {
     width: '115px',
     height: '115px',
@@ -48,7 +47,7 @@ const Rover3 = (props) => {
     <div className="mainRoverOpportunity">
       <div className="CalenAndIcon">
         <div className="cal">
-          <Calendar onChange={props.handleOppDateListen}/>
+          <Calendar onChange={props.handleRoverDateListener}/>
         </div>
         <div className="nestedRover">
           <Link to="/rovers/curiosity" onClick={props.handleRoverListener}><img id="rovCur" src={rover2} style={rovCurStyle} alt="roverpicture" /></Link>

@@ -1,8 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Navigation from './Navigation';
-import {Link} from 'react-router-dom';
 import './Header.css';
 import Logo from '../../assets/total-recall.png';
+import Logout from './Logout';
 
 // component contains a navigation menu. Nested components have a props to control
 // a navigation emphasizing effects and AlbumeListener to show a user album if
@@ -16,6 +17,9 @@ const Header = (props) => {
           handleAlbumeListen={props.handleAlbumeListen}
           handleNavListen={props.handleNavListen}
           />
+          <form onClick={props.handleLogoutListener}>
+            <Logout visible={props.checker} />
+          </form>
       </div>
     </div>
   );
