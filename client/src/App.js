@@ -13,6 +13,7 @@ import Storage from './components/Storage';
 import Mission from './components/Mission';
 import LoginForm from './components/Login_form';
 import SignIn from './components/Sign_in';
+import Stub from './assets/space_pic.jpg';
 
 class App extends Component {
   constructor(props) {
@@ -24,18 +25,18 @@ class App extends Component {
       email: undefined,
       pictures: [],
       albume: [],
-      currentTime: '',
       flag: 0,
       prevObj: '',
       nextObj: '',
       signInName: '',
       signInPass: '',
       token: '',
-      userId: '',
+      userId: undefined,
       key: '',
+      currentTime: '',
       date: new Date(),
-      bubbles: '',
-      checker: 'hidden',
+      bubbles: 'bubbles',
+      checker: '',
     };
 
     this.countDown = this.countDown.bind(this);
@@ -57,19 +58,22 @@ class App extends Component {
   }
 
   componentWillMount() {
-    this.setState({
-      currentTime: this.countDown(),
-    });
-
-    this.setState({
-      bubbles: 'bubbles',
-    });
+    this.countDown();
   }
 
   componentDidMount() {
     setInterval(this.countDown, 1000);
     this.stopBubbling();
   }
+
+  // shouldComponentUpdate(nextProps, nextState) {
+  //    console.log(nextProps.userId !== this.state.userId);
+  //    return nextProps.userId !== this.state.userId;
+  // }
+
+  // componentWillUpdate() {
+  //   this.LogOutState();
+  // }
 
   // countdown clock at the bottom of the screen with
   // representation by day, hours, minuts and second
@@ -113,15 +117,17 @@ class App extends Component {
     }
   }
 
-  // Methode to delete explicitely a token and finish use session
+  // Methode to delete explicitely a token and finish user's session
   LogOutState() {
     if (this.state.userId) {
-      console.log(this.state.userId);
+      console.log(`user ${this.state.userId} logged in`);
       this.setState({
         checker: 'visible',
       });
+      console.log(this.state.checker);
     } else {
-      console.log(this.state.userId);
+      console.log(`user not logged in`);
+      console.log(this.state.checker);
       this.setState({
         checker: 'hidden',
       });
@@ -210,7 +216,7 @@ class App extends Component {
     })
       .then((res) => {
         console.log(res);
-        if (res.data.code === '22P02') {
+        if (res.data.code === '22P02' || res.data.message === 'Please login') {
             alert('please login first to add this pictures to your album');
         } else if (res.data.code === '23505') {
             alert('this picture already exist in your albume');
@@ -281,15 +287,21 @@ class App extends Component {
       data: { user_id: id },
     })
       .then((res) => {
-        if (res.data === 'empty' && this.state.userId === '') {
-          const obj = {
-            url: 'http://www.lockheedmartin.com/content/dam/lockheed/data/space/photo/mbc/MBC_Poster.jpg'
-          }
+        console.log(res);
+        const obj = {
+          url: 'http://www.lockheedmartin.com/content/dam/lockheed/data/space/photo/mbc/MBC_Poster.jpg',
+        };
+        if (this.state.userId === '' || res.data.message === 'Please login') {
           this.setState({
             albume: [obj],
           });
           alert('Please login, to see your personal albume');
-        } else {
+        } else if (res.data === 'empty') {
+          this.setState({
+            albume: [obj],
+          });
+          alert('You album is empty');
+        } else  {
           this.setState({
             albume: res.data,
           });
@@ -418,6 +430,7 @@ class App extends Component {
             handleAlbumeListen={this.handleAlbumeListener}
             handleNavListen={this.handleNavListener}
             checker={this.state.checker}
+            userId={this.state.userId}
             handleLogoutListener={this.handleLogoutListener}
           />
         </div>

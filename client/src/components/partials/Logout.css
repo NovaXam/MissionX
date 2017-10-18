@@ -1,23 +1,11 @@
 .logout {
   display: inline-block;
   position: absolute;
-  /*width: 10px;
-  height: 30px;*/
-  /*border: 2px solid white;*/
-  /*border-radius: 20px;*/
-  /*color: white;*/
-  /*font-size: 25px;*/
-  /*text-align: center;*/
   left: 370px;
   top: 60px;
-  /*background-color: transparent;*/
-}
-
-.logout p {
   line-height: 0px;
   padding: 1px;
 }
-
 
 .logout button {
   height: 30px;
@@ -27,4 +15,3 @@
   font-size: 12px;
   cursor: pointer;
 }
-
