@@ -21,7 +21,7 @@ const SignIn = (props) => {
           <lable>Password: </lable>
           <input
             style={{ marginLeft: '15px', borderRadius: '5px' }}
-            type="text"
+            type="password"
             name="password"
             value={props.passSignInValue}
             placeholder="password"

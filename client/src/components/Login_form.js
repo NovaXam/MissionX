@@ -21,7 +21,7 @@ const Login = (props) => {
           <lable>Password: </lable>
           <input
             style={{ marginLeft: '15px', borderRadius: '5px' }}
-            type="text"
+            type="password"
             name="password"
             value={props.passValue}
             placeholder="password"
@@ -38,7 +38,7 @@ const Login = (props) => {
             onChange={props.handlEmailListen}
           />
           <br />
-          <input id="button" style={{ display: 'inline-block', width: '150px', height: '150%' }} type="submit" value="Submit" />
+            <input id="button" style={{ display: 'inline-block', width: '150px', height: '150%' }} type="submit" value="Submit" />
           <br />
           <p className="LoginLink">Already registered, use <Link to="/sign_in">LOGIN</Link></p>
         </fieldset>

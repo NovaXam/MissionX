@@ -22,7 +22,7 @@ missionController.create = (req, res) => {
   })
   .catch(err => {
       console.log(err);
-      res.send("err");
+      res.send(err);
   });
 }
 

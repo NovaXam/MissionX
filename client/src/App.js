@@ -89,6 +89,7 @@ class App extends Component {
     });
   }
 
+  // Reusable method to change a state's property
   changeStat(prop, response) {
     const keyObj = {};
     keyObj[prop] = response;
@@ -96,11 +97,12 @@ class App extends Component {
     this.setState(keyObj);
   }
 
+  // Reusable method to get an API key from server
   async getKeys(elem) {
     let keyApi;
     let resultApi;
     if (elem) {
-      console.log('key is here');
+      console.log('key is downloaded');
     } else {
       try {
         keyApi = await axios('http://localhost:3001/api/info');
@@ -111,6 +113,7 @@ class App extends Component {
     }
   }
 
+  // Methode to delete explicitely a token and finish use session
   LogOutState() {
     if (this.state.userId) {
       console.log(this.state.userId);
@@ -125,12 +128,14 @@ class App extends Component {
     }
   }
 
+  // Method to cut Loading component
   stopBubbling() {
       this.setState({
         bubbles: '',
       });
     }
 
+  // Method to control an internal navigation inside between rovers
   urlReturn() {
     return window.location.pathname.split('/')[2];
   }
@@ -166,11 +171,8 @@ class App extends Component {
     let roverName;
     try {
       transDate = date.toISOString().split('T')[0];
-      console.log(transDate);
       dateProp = await this.changeStat('date', transDate);
-      console.log(this.state.date);
       roverName = await this.urlReturn();
-      console.log(roverName);
       keys = await this.getKeys(this.state.key);
       dataApi = await axios(`https://api.nasa.gov/mars-photos/api/v1/rovers/${roverName}/photos?earth_date=${this.state.date}&api_key=${this.state.key}`);
     } catch(err) {
@@ -179,11 +181,14 @@ class App extends Component {
       this.changeStat('pictures', dataApi.data.photos);
   }
 
+  //Method to add new picture to user album
   handleSaveListener(event) {
     event.preventDefault();
     const index = event.target.getAttribute('photo_id');
+    console.log(index);
     const newElem = this.state.pictures.filter((elem) => {
       if (elem.id == index) {
+        console.log(elem.id);
         return elem;
       }
     });
@@ -204,10 +209,13 @@ class App extends Component {
       },
     })
       .then((res) => {
-        if (res.data === "err") {
-            alert('this item already exist');
-        } else {
-          alert('you just add new item to your album');
+        console.log(res);
+        if (res.data.code === '22P02') {
+            alert('please login first to add this pictures to your album');
+        } else if (res.data.code === '23505') {
+            alert('this picture already exist in your albume');
+        } else  if(res.data === 'item is added') {
+            alert('you just add new item to your album');
         }
       }).catch((err) => {
         console.log(err);
@@ -237,6 +245,7 @@ class App extends Component {
 
   handleLoginListener(event) {
     event.preventDefault();
+    console.log('inside of login');
     axios({
       method: 'POST',
       url: 'http://localhost:3001/api/registration',
@@ -247,12 +256,14 @@ class App extends Component {
       },
     })
       .then((res) => {
+        const newUserName = JSON.parse(res.config.data).name;
         this.setState({
           user_name: '',
           password: '',
           email: '',
         });
-        alert('Welcome to Mars');
+        console.log(this.state.pathToLogin);
+        alert(`${newUserName}, Welcome to Mars`);
       })
       .catch((err) => {
         console.log(err);
@@ -270,13 +281,14 @@ class App extends Component {
       data: { user_id: id },
     })
       .then((res) => {
-        if (res.data === 'empty' || res.data.message === 'Please login') {
+        if (res.data === 'empty' && this.state.userId === '') {
           const obj = {
             url: 'http://www.lockheedmartin.com/content/dam/lockheed/data/space/photo/mbc/MBC_Poster.jpg'
           }
           this.setState({
             albume: [obj],
           });
+          alert('Please login, to see your personal albume');
         } else {
           this.setState({
             albume: res.data,
@@ -311,6 +323,10 @@ class App extends Component {
 
   handleDeleteListener(event) {
     event.preventDefault();
+    if (this.state.userId === '') {
+      alert('you need to be logged in to activate this feature');
+    }
+    else {
     const indexId = event.target.getAttribute('photo_id');
     const userId = event.target.getAttribute('user_id');
     axios({
@@ -346,6 +362,7 @@ class App extends Component {
       .catch((err) => {
         console.log(err);
       });
+    }
   }
 
   handleSignInNameListener(event) {
