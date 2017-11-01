@@ -66,15 +66,6 @@ class App extends Component {
     this.stopBubbling();
   }
 
-  // shouldComponentUpdate(nextProps, nextState) {
-  //    console.log(nextProps.userId !== this.state.userId);
-  //    return nextProps.userId !== this.state.userId;
-  // }
-
-  // componentWillUpdate() {
-  //   this.LogOutState();
-  // }
-
   // countdown clock at the bottom of the screen with
   // representation by day, hours, minuts and second
   countDown() {

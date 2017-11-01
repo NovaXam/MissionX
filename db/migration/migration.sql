@@ -1,4 +1,3 @@
-\c mission_x_dev;
 
 CREATE TABLE IF NOT EXISTS users (
   id serial PRIMARY KEY,
