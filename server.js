@@ -18,11 +18,11 @@ app.use(cors());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-// app.use(express.static('public'));
-const indexPath = path.join(__dirname, '/../index.html')
-const publicPath = express.static(path.join(__dirname, '../public'))
-app.use('/public', publicPath);
-app.get('/', function (_, res) { res.sendFile(indexPath) });
+app.use(express.static('public'));
+// const indexPath = path.join(__dirname, '/../index.html');
+// const publicPath = express.static(path.join(__dirname, '../public'));
+// app.use('/public', publicPath);
+// app.get('/', function (_, res) { res.sendFile(indexPath) });
 
 /*exprees middleware to check a valide token*/
 app.use((req, res, next) => {
@@ -53,7 +53,6 @@ app.listen(PORT, () => {
 /*due to the following path redirect to routes*/
 const missionRoutes = require('./routes/missionRoutes');
 app.use('/api', missionRoutes);
-
 
 app.get('*', (req, res) => {
   res.status(404).send('Ooops!');
