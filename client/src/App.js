@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
-import Loading from './components/partials/Loading';
 import Footer from './components/partials/Footer';
 import Header from './components/partials/Header';
 import Rovers from './components/Rovers';

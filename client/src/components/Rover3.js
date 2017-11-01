@@ -2,7 +2,6 @@ import React from 'react';
 import Slider from 'react-slick';
 import { Link } from 'react-router-dom';
 import Calendar from 'react-calendar';
-import Loading from './partials/Loading';
 import './Rover3.css';
 import rover2 from '../assets/rover2.png';
 import rover1 from '../assets/rover1.png';
