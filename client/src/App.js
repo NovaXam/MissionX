@@ -435,6 +435,21 @@ class App extends Component {
           />
         </div>
         <Switch>
+          <Route exact path="/" component={Mission} />
+          <Route
+            exact
+            path="/rovers/curiosity"
+            render={props => (
+              <Rover1
+                bubbles={this.state.bubbles}
+                pictures={this.state.pictures}
+                handleRoverDateListener={this.handleRoverDateListener}
+                handleSaveListener={this.handleSaveListener}
+                handleRoverListener={this.handleRoverListener}
+              />
+            )}
+          />
+
           <Route exact path="/mission" component={Mission} />
           <Route
             exact

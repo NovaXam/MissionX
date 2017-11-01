@@ -20,7 +20,7 @@ const Login = (props) => {
           <br />
           <lable>Password: </lable>
           <input
-            style={{ marginLeft: '15px', borderRadius: '5px' }}
+            style={{borderRadius: '5px' }}
             type="password"
             name="password"
             value={props.passValue}

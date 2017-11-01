@@ -1,6 +1,11 @@
+.mainMission {
+  text-align: center;
+  width: 100%;
+}
 .textfield {
+  display: inline-block;
   position: relative;
-  margin: 150px auto;
+  margin: 80px auto;
   height: 300px;
   width: 600px;
   background-color: rgba(255,255,255,0.8);
@@ -15,14 +20,19 @@
   color: rgb(55, 15, 50);
 }
 
-p {
-  padding: 10px;
+.textfield p {
+  display: inline-block;
+  position: relative;
   line-height: 35px;
+  top: -10px;
 }
 
 .lastTexPart {
-  margin: -50px 0px 0px 0px;
+  display: inline-block;
+  position: relative;
   text-align: right;
+  top: -65px;
+  left: 340px;
 }
 
 .textfield span {

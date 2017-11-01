@@ -2,7 +2,6 @@ import React from 'react';
 import Slider from 'react-slick';
 import { Link } from 'react-router-dom';
 import Calendar from 'react-calendar';
-import Loading from './partials/Loading';
 import './Rover2.css';
 import rover2 from '../assets/rover2.png';
 import rover1 from '../assets/rover1.png';
@@ -48,9 +47,6 @@ const Rover2 = (props) => {
           <Link to="/rovers/spirit" onClick={props.handleRoverListener}><img id="rovSpi" src={rover1} style={rovSpiStyle} alt="roverpicture" /></Link>
           <Link to="/rovers/opportunity" onClick={props.handleRoverListener}><img id="rovOpp" src={rover3} alt="roverpicture" /></Link>
         </div>
-      </div>
-      <div className="loading">
-        <Loading bubbles={props.bubbles} />
       </div>
       <div className="gallaryAPI">
         <Slider {...settings}>

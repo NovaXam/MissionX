@@ -1,7 +1,10 @@
 .mainFooter {
-  position: absolute;
+  display: inline-block;
+  position: relative;
   text-align: center;
-  margin: -20px auto;
+  width: 100%;
+  height: 100%;
+  margin: 0px auto;
 }
 
 #background {
@@ -15,13 +18,13 @@
 
 #spaceXlogo {
   position: relative;
-  width: 50%;
-  top: -50px;
+  width: 15%;
+  margin-top: -10px;
 }
 
 .timerBlock {
-  display: inline-block;
-  position: absolute;
-  top: 0px;
-  left: 550px;
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  height: 55px;
 }

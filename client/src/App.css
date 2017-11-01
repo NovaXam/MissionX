@@ -1,5 +1,6 @@
 .footer {
-  position: absolute;
-  top: 650px;
-  left: -30px;
+  display: inline-block;
+  position: relative;
+  top: 30px;
+  height: 55px;
 }

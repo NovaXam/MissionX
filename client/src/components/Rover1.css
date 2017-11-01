@@ -1,52 +1,54 @@
 .mainRoverCuriosity {
-  display: inline-block;
-  position: absolute;
-  margin: 130px 155px;
+  display: inline-flex;
+  flex-direction: row;
+  position: relative;
   text-align: center;
-  width: 1100px;
+  justify-content: space-around;
+  height: 460px;
+  width: 100%;
 }
 
 .CalenAndIcon {
   display: inline-flex;
   flex-direction: column;
-  /*border: 1px solid white;*/
+  justify-content: center;
   text-align: center;
   height: 450px;
-  width: 400px;
-  margin-left: -150px;
+  width: 300px;
+  margin: 15px 0px 0px 25px;
 }
 
 .cal {
   display: inline-block;
   margin: 0 auto;
   width: 300px;
+  height: auto;
+  margin: 0px auto 30px;
 }
 
 .react-calendar {
   border-radius: 10px;
-  margin-top: 30px;
-  margin-bottom: 50px;
   background-color: rgba(255,255,255,0.8);
   box-shadow: 0px 0px 10px 1px rgb(169,64,13);
 }
 
 .nestedRover {
-  position: absolute;
-  margin: 325px auto;
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: center;
+  position: relative;
+  width: auto;
 }
 
-.loading {
+.gallaryAPI {
   position: relative;
-  display: inline-block;
-  left: 425px;
-  top: 175px;
-  z-index: 1;
+  height: 500px;
+  width: 650px;
+  top: -45px;
+  margin-right: 50px;
 }
 
 #rovCur {
-  /*width: 100px;
-  height: 100px;
-  margin: 15px 15px 0px;*/
   border-radius: 90px;
   background-color: white;
   box-shadow: 0px 0px 5px 3px rgb(169,64,13);
@@ -68,14 +70,6 @@
   border-radius: 90px;
   background-color: white;
   box-shadow: 0px 0px 5px 3px rgb(169,64,13);
-}
-
-.gallaryAPI {
-  position: relative;
-  height: 400px;
-  width: 650px;
-  float: right;
-  top: -50px;
 }
 
 .bodyCurPic div {
@@ -153,5 +147,3 @@
   box-shadow: 0px 0px 10px 1px white;
   margin-bottom: -3px;
 }
-
-

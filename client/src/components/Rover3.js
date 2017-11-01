@@ -55,9 +55,6 @@ const Rover3 = (props) => {
           <Link to="/rovers/opportunity" onClick={props.handleRoverListener}><img id="rovOpp" src={rover3} style={rovOppStyle} alt="roverpicture" /></Link>
         </div>
       </div>
-      <div className="loading">
-        <Loading bubbles={props.bubbles} />
-      </div>
       <div className="gallaryAPI">
         <Slider {...settings}>
           {props.pictures.map((elem) => {

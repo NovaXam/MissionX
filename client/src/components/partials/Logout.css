@@ -1,13 +1,6 @@
-.logout {
-  display: inline-block;
-  position: absolute;
-  left: 370px;
-  top: 60px;
-  line-height: 0px;
-  padding: 1px;
-}
-
 .logout button {
+  display: inline-block;
+  position: relative;
   height: 30px;
   color: white;
   background-color: transparent;
