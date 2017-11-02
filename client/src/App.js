@@ -186,7 +186,7 @@ class App extends Component {
     });
     axios({
       method: 'POST',
-      url: '/api/rovers',
+      url: 'https://missionmarsx.herokuapp.com/api/rovers',
       data: {
         photo_id: newElem[0].id,
         url: newElem[0].img_src,
@@ -239,7 +239,7 @@ class App extends Component {
     console.log('inside of login');
     axios({
       method: 'POST',
-      url: '/api/registration',
+      url: 'https://missionmarsx.herokuapp.com/api/registration',
       data: {
         name: this.state.user_name,
         password: this.state.password,
@@ -264,7 +264,7 @@ class App extends Component {
     const id = this.state.userId;
     axios({
       method: 'POST',
-      url: '/api/storage',
+      url: 'https://missionmarsx.herokuapp.com/api/storage',
       headers: {
         authorization: `JWT ${localStorage.getItem('token')}`,
       },
@@ -306,7 +306,7 @@ class App extends Component {
     });
     } else {
       currentElem.style.cssText = 'text-decoration : underline; font-size: 37px; text-shadow: 0 0 0.2em #F87, 0 0 0.2em #F87';
-      this.setState((prevState)  => {
+      this.setState((prevState) => {
         return {
           prevObj: prevState.nextObj.setAttribute('style', 'text-decoration:none; font-size:35px; text-shadow:0;'),
           nextObj: currentElem,
@@ -326,7 +326,7 @@ class App extends Component {
     const userId = event.target.getAttribute('user_id');
     axios({
       method: 'DELETE',
-      url: '/api/storage',
+      url: 'https://missionmarsx.herokuapp.com/api/storage',
       data: {
         photo_id: indexId,
         user_id: userId,
@@ -339,7 +339,7 @@ class App extends Component {
         alert('item successfully deleted');
         axios({
           method: 'POST',
-          url: '/api/storage',
+          url: 'https://missionmarsx.herokuapp.com/api/storage',
           headers: {
             authorization: `JWT ${localStorage.getItem('token')}`,
           },
