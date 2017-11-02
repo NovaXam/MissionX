@@ -58,6 +58,7 @@ class App extends Component {
 
   componentWillMount() {
     this.countDown();
+    require('dotenv').config();
   }
 
   componentDidMount() {
@@ -87,7 +88,6 @@ class App extends Component {
   changeStat(prop, response) {
     const keyObj = {};
     keyObj[prop] = response;
-    console.log(keyObj[prop]);
     this.setState(keyObj);
   }
 
@@ -103,7 +103,7 @@ class App extends Component {
       } catch (err) {
         console.log(err);
       }
-      resultApi = await this.changeStat('key', keyApi.data.key);
+      resultApi = await this.changeStat('key', keyApi.data.data.key);
     }
   }
 
@@ -140,20 +140,16 @@ class App extends Component {
   // of each rover. Method makes prior request to local server
   // for api key in case if it wasn't priory instanciated.
   async handleRoverListener(event) {
-    console.log(event.target);
     let keys;
     let roverName;
     let dataApi;
     try {
       keys = await this.getKeys(this.state.key);
-      console.log(this.state.key);
       roverName = await this.urlReturn();
-      console.log(roverName);
       dataApi = await axios(`https://api.nasa.gov/mars-photos/api/v1/rovers/${roverName}/photos?sol=1000&api_key=${this.state.key}`);
     } catch(err) {
         console.log(err);
     }
-     console.log(dataApi);
      this.changeStat('pictures', dataApi.data.photos);
   }
 
@@ -185,13 +181,12 @@ class App extends Component {
     console.log(index);
     const newElem = this.state.pictures.filter((elem) => {
       if (elem.id == index) {
-        console.log(elem.id);
         return elem;
       }
     });
     axios({
       method: 'POST',
-      url: 'http://localhost:3001/api/rovers',
+      url: 'http://localhost:5000/api/rovers',
       data: {
         photo_id: newElem[0].id,
         url: newElem[0].img_src,
@@ -206,7 +201,6 @@ class App extends Component {
       },
     })
       .then((res) => {
-        console.log(res);
         if (res.data.code === '22P02' || res.data.message === 'Please login') {
             alert('please login first to add this pictures to your album');
         } else if (res.data.code === '23505') {
@@ -245,7 +239,7 @@ class App extends Component {
     console.log('inside of login');
     axios({
       method: 'POST',
-      url: 'http://localhost:3001/api/registration',
+      url: 'http://localhost:5000/api/registration',
       data: {
         name: this.state.user_name,
         password: this.state.password,
@@ -259,7 +253,6 @@ class App extends Component {
           password: '',
           email: '',
         });
-        console.log(this.state.pathToLogin);
         alert(`${newUserName}, Welcome to Mars`);
       })
       .catch((err) => {
@@ -271,14 +264,13 @@ class App extends Component {
     const id = this.state.userId;
     axios({
       method: 'POST',
-      url: 'http://localhost:3001/api/storage',
+      url: 'http://localhost:5000/api/storage',
       headers: {
         authorization: `JWT ${localStorage.getItem('token')}`,
       },
       data: { user_id: id },
     })
       .then((res) => {
-        console.log(res);
         const obj = {
           url: 'http://www.lockheedmartin.com/content/dam/lockheed/data/space/photo/mbc/MBC_Poster.jpg',
         };
@@ -334,7 +326,7 @@ class App extends Component {
     const userId = event.target.getAttribute('user_id');
     axios({
       method: 'DELETE',
-      url: 'http://localhost:3001/api/storage',
+      url: 'http://localhost:5000/api/storage',
       data: {
         photo_id: indexId,
         user_id: userId,
@@ -347,7 +339,7 @@ class App extends Component {
         alert('item successfully deleted');
         axios({
           method: 'POST',
-          url: 'http://localhost:3001/api/storage',
+          url: 'http://localhost:5000/api/storage',
           headers: {
             authorization: `JWT ${localStorage.getItem('token')}`,
           },
@@ -388,7 +380,7 @@ class App extends Component {
     };
     axios({
       method: 'POST',
-      url: 'http://localhost:3001/api/sign_in',
+      url: 'http://localhost:5000/api/sign_in',
       data: { userIn },
     })
       .then((res) => {

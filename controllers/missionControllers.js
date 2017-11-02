@@ -6,7 +6,6 @@ const missionController = {};
 missionController.index = (req, res) => {
   missionModel.findAll(req.body)
   .then((items) => {
-    console.log(items);
     res.send(items)
   }).catch(err => {
       console.log(err);
@@ -15,7 +14,6 @@ missionController.index = (req, res) => {
 }
 
 missionController.create = (req, res) => {
-  console.log(req.body);
   missionModel.create(req.body)
   .then((item) => {
       res.send("item is added");
@@ -27,7 +25,6 @@ missionController.create = (req, res) => {
 }
 
 missionController.destroy = (req, res) => {
-  console.log(req.body);
   missionModel.destroy(req.body)
   .then(() => {
     res.send('item successfully deleted');

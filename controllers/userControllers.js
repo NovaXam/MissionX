@@ -7,7 +7,6 @@ const userController = {};
 /*registrations of new user middleware and crypting a password */
 userController.reg = (req, res, next) => {
   req.body.password = bcrypt.hashSync(req.body.password, 10);
-  console.log(req.body);
   userModel.save(req.body)
   .then(() => {
       res.send('new user added');
@@ -21,7 +20,6 @@ userController.reg = (req, res, next) => {
 userController.sign_in = (req, res) => {
   userModel.findOne(req.body.userIn)
   .then((UserIn) => {
-      console.log(UserIn.id);
       if(!UserIn) {
         res.status(405).json({ message: "Authentication failed. User not found" });
         }
