@@ -18,7 +18,7 @@ app.use(cors());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-app.use(express.static('./client/public'));
+app.use(express.static('./client/build'));
 
 /*exprees middleware to check a valide token*/
 app.use((req, res, next) => {
