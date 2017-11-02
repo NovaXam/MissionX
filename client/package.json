@@ -33,5 +33,5 @@
     "eslint-plugin-react": "^7.4.0",
     "webpack": "^1.12.14"
   },
-  "proxy": "https://missionmarsx.herokuapp.com"
+  "proxy": "https://missionmarsx.herokuapp.com/"
 }

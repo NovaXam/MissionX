@@ -99,7 +99,7 @@ class App extends Component {
       console.log('key is downloaded');
     } else {
       try {
-        keyApi = await axios('api/info');
+        keyApi = await axios('https://missionmarsx.herokuapp.com/api/info');
       } catch (err) {
         console.log(err);
       }
@@ -186,7 +186,7 @@ class App extends Component {
     });
     axios({
       method: 'POST',
-      url: 'api/rovers',
+      url: '/api/rovers',
       data: {
         photo_id: newElem[0].id,
         url: newElem[0].img_src,
@@ -239,7 +239,7 @@ class App extends Component {
     console.log('inside of login');
     axios({
       method: 'POST',
-      url: 'api/registration',
+      url: '/api/registration',
       data: {
         name: this.state.user_name,
         password: this.state.password,
@@ -264,24 +264,24 @@ class App extends Component {
     const id = this.state.userId;
     axios({
       method: 'POST',
-      url: 'api/storage',
+      url: '/api/storage',
       headers: {
         authorization: `JWT ${localStorage.getItem('token')}`,
       },
       data: { user_id: id },
     })
       .then((res) => {
-        // const obj = {
-        //   url: 'https://www.lockheedmartin.com/content/dam/lockheed/data/space/photo/mbc/MBC_Poster.jpg',
-        // };
+        const obj = {
+          url: 'https://www.lockheedmartin.com/content/dam/lockheed/data/space/photo/mbc/MBC_Poster.jpg',
+        };
         if (this.state.userId === '' || res.data.message === 'Please login') {
           this.setState({
-            albume: [{ Stub }],
+            albume: [obj],
           });
           alert('Please login, to see your personal albume');
         } else if (res.data === 'empty') {
           this.setState({
-            albume: [{ Stub }],
+            albume: [obj],
           });
           alert('You album is empty');
         } else  {
@@ -326,7 +326,7 @@ class App extends Component {
     const userId = event.target.getAttribute('user_id');
     axios({
       method: 'DELETE',
-      url: 'api/storage',
+      url: '/api/storage',
       data: {
         photo_id: indexId,
         user_id: userId,
@@ -339,7 +339,7 @@ class App extends Component {
         alert('item successfully deleted');
         axios({
           method: 'POST',
-          url: 'api/storage',
+          url: '/api/storage',
           headers: {
             authorization: `JWT ${localStorage.getItem('token')}`,
           },
@@ -380,7 +380,7 @@ class App extends Component {
     };
     axios({
       method: 'POST',
-      url: 'api/sign_in',
+      url: '/api/sign_in',
       data: { userIn },
     })
       .then((res) => {
