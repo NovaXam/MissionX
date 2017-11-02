@@ -99,11 +99,11 @@ class App extends Component {
       console.log('key is downloaded');
     } else {
       try {
-        keyApi = await axios('http://localhost:3001/api/info');
+        keyApi = await axios('http://localhost:5000/api/info');
       } catch (err) {
         console.log(err);
       }
-      resultApi = await this.changeStat('key', keyApi.data.data.key);
+      resultApi = await this.changeStat('key', keyApi.data.key);
     }
   }
 
@@ -153,6 +153,7 @@ class App extends Component {
     } catch(err) {
         console.log(err);
     }
+     console.log(dataApi);
      this.changeStat('pictures', dataApi.data.photos);
   }
 
