@@ -38,7 +38,7 @@ const Login = (props) => {
             onChange={props.handlEmailListen}
           />
           <br />
-            <input id="button" style={{ display: 'inline-block', width: '150px', height: '150%' }} type="submit" value="Submit" />
+            <input id="button" style={{ display: 'inline-block', width: '150px' }} type="submit" value="Submit" />
           <br />
           <p className="LoginLink">Already registered, use <Link to="/sign_in">LOGIN</Link></p>
         </fieldset>

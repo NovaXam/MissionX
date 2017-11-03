@@ -1,14 +1,10 @@
-@font-face {
-   font-family: 'Smallville';
-   src: url('../Smallville1.ttf');
-}
-
 .albume {
   display: inline-block;
   position: relative;
   width: 100%;
   height: 460px;
   margin: 0px auto;
+  text-align: center;
 }
 
 .StoragePic img {
@@ -28,22 +24,28 @@
   font-size: 30px;
   color:#840000;
   top: -60px;
-  left: 695px;
   text-align: center;
   background-color: transparent;
   box-shadow: 0px 0px 10px 1px rgb(169,64,13);
 }
-.albume .slick-initialized slick-slider {
+
+.albume .slick-initialized.slick-slider {
+  display: inline-block;
+  position: relative;
   height: 460px;
+  width: 1200px;
 }
 
 .albume .slick-prev  {
-    left: 105px;
+    display: inline-block;
+    margin: 0px 0px 0px 175px;
     z-index: 1;
   }
 
 .albume .slick-next  {
-    left: 1260px;
+    display: inline-block;
+    margin: 0px 0px 0px 375px;
+
   }
 
 .albume .slick-next:before, .slick-prev:before {

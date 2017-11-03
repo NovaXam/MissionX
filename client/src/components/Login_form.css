@@ -1,8 +1,3 @@
-@font-face {
-   font-family: 'Smallville';
-   src: url('../Smallville1.ttf');
-}
-
 .formBlock {
   margin: 0px auto;
   height: 460px;
@@ -40,6 +35,7 @@ fieldset input {
 
 fieldset p {
   position: relative;
+  margin: 0px;
   z-index: 1;
   font-size: 15px;
 }

@@ -7,6 +7,16 @@
   text-align: center;
   width: 100%;
 }
+
+.mainMission .textfield a {
+  display: inline-block;
+  position: relative;
+  text-align: right;
+  top: -75px;
+  left: 340px;
+  text-decoration: none;
+}
+
 .textfield {
   display: inline-block;
   position: relative;
@@ -30,14 +40,6 @@
   position: relative;
   line-height: 35px;
   top: -10px;
-}
-
-.lastTexPart {
-  display: inline-block;
-  position: relative;
-  text-align: right;
-  top: -65px;
-  left: 340px;
 }
 
 .textfield span {
