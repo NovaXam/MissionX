@@ -1,7 +1,12 @@
+@font-face {
+   font-family: Smallville;
+   src: url(Smallville1.ttf);
+}
+
 .Nav a {
   color: white;
   text-decoration: none;
-  font-family: 'Smallville';
+  font-family: Smallville;
   font-size: 35px;
   letter-spacing: 4px;
   background: transparent;

@@ -1,3 +1,8 @@
+@font-face {
+   font-family: Smallville;
+   src: url(Smallville1.ttf);
+}
+
 .header {
   display: inline-block;
   width: 100%;
