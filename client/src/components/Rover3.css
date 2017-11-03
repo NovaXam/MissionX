@@ -1,6 +1,6 @@
 @font-face {
-   font-family: Smallville;
-   src: url(Smallville1.ttf);
+   font-family: 'Smallville';
+   src: url('../Smallville1.ttf');
 }
 
 .mainRoverSpirit {

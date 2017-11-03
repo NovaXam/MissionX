@@ -1,6 +1,6 @@
 @font-face {
-   font-family: Smallville;
-   src: url(Smallville1.ttf);
+   font-family: 'Smallville';
+   src: url('../Smallville1.ttf');
 }
 
 .mainMission {
@@ -20,7 +20,7 @@
   font-size: 40px;
   padding: 0px 20px;
   line-height: 40px;
-  font-family: Smallville;
+  font-family: 'Smallville';
   font-weight: 100;
   color: rgb(55, 15, 50);
 }
@@ -41,6 +41,6 @@
 }
 
 .textfield span {
-  font-family: 'helvetica';
+  font-family: 'Helvetica';
   font-size: 30px;
 }
